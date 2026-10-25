@@ -265,14 +265,14 @@ const DashboardAssistant = () => {
     const loadPortfolio = async () => {
       setLoading(true);
       const results = await Promise.allSettled([
-        axios.get("http://localhost:3002/allHoldings", {
+        axios.get("https://zerodha-backend-2ozm.onrender.com/allHoldings", {
           withCredentials: true,
         }),
-        axios.get("http://localhost:3002/orders", { withCredentials: true }),
-        axios.get("http://localhost:3002/watchlist", {
+        axios.get("https://zerodha-backend-2ozm.onrender.com/orders", { withCredentials: true }),
+        axios.get("https://zerodha-backend-2ozm.onrender.com/watchlist", {
           withCredentials: true,
         }),
-        axios.get("http://localhost:3002/allPositions", {
+        axios.get("https://zerodha-backend-2ozm.onrender.com/allPositions", {
           withCredentials: true,
         }),
       ]);

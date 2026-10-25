@@ -12,19 +12,19 @@ const Home = () => {
   useEffect(() => {
     const loadProfile = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3002/profile", {
+        const { data } = await axios.get("https://zerodha-backend-2ozm.onrender.com/profile", {
           withCredentials: true,
         });
 
         if (!data.status) {
-          window.location.assign("http://localhost:3000/login");
+          window.location.assign("https://zerodha-frontend-snowy.vercel.app/login");
           return;
         }
 
         setUser(data);
       } catch (error) {
         if (error.response?.status === 401) {
-          window.location.assign("http://localhost:3000/login");
+         window.location.assign("https://zerodha-frontend-snowy.vercel.app/login");
           return;
         }
 

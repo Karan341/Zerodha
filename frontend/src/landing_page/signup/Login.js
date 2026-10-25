@@ -31,7 +31,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3002/login",
+        "https://zerodha-backend-2ozm.onrender.com/login",
         {
           ...inputValue,
         },
@@ -42,7 +42,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.assign("http://localhost:3001");
+          window.location.assign("https://zerodha-dashboard-one-eosin.vercel.app/");
         }, 1000);
       } else {
         handleError(message);

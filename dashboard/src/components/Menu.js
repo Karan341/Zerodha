@@ -27,7 +27,7 @@ const Menu = ({ userId, username }) => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3002/logout",
+        "https://zerodha-backend-2ozm.onrender.com/logout",
         {},
         { withCredentials: true }
       );
@@ -36,7 +36,7 @@ const Menu = ({ userId, username }) => {
         throw new Error(data.message || "Logout failed.");
       }
 
-      window.location.assign("http://localhost:3000/");
+      window.location.assign("https://zerodha-frontend-snowy.vercel.app/");
     } catch (error) {
       console.error("Could not log out:", error);
       setLogoutError(error.response?.data?.message || error.message || "Logout failed.");
@@ -51,7 +51,7 @@ const Menu = ({ userId, username }) => {
     <div className="menu-container">
       <a
         className="dashboard-brand-link"
-        href="http://localhost:3000/"
+        href="https://zerodha-frontend-snowy.vercel.app/"
         aria-label="Go to main website home"
         title="Main website home"
       >

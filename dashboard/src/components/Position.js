@@ -7,7 +7,11 @@ const Positions = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/allPositions", { withCredentials: true })
+      
+.get("https://zerodha-backend-2ozm.onrender.com/allPositions", {
+  withCredentials: true,
+})
+
       .then((response) => setPositions(response.data))
       .catch((loadError) => {
         console.error("Could not load positions:", loadError);

@@ -9,9 +9,14 @@ const Orders = () => {
   useEffect(() => {
     const loadOrders = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3002/orders", {
-          withCredentials: true,
-        });
+        
+const { data } = await axios.get(
+  "https://zerodha-backend-2ozm.onrender.com/orders",
+  {
+    withCredentials: true,
+  }
+);
+
         setOrders(data);
       } catch (loadError) {
         console.error("Could not load order history:", loadError);

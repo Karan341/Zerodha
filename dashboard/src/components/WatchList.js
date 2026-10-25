@@ -27,9 +27,10 @@ const WatchList = () => {
   useEffect(() => {
     const loadWatchlist = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3002/watchlist", {
-          withCredentials: true,
-        });
+        const { data } = await axios.get(
+  "https://zerodha-backend-2ozm.onrender.com/watchlist",
+  { withCredentials: true }
+);
         setSymbols(data.symbols);
       } catch (loadError) {
         console.error("Could not load saved watchlist:", loadError);
@@ -68,11 +69,11 @@ const WatchList = () => {
   const saveSymbols = async (nextSymbols) => {
     setError("");
     try {
-      const { data } = await axios.put(
-        "http://localhost:3002/watchlist",
-        { symbols: nextSymbols },
-        { withCredentials: true }
-      );
+     const { data } = await axios.put(
+  "https://zerodha-backend-2ozm.onrender.com/watchlist",
+  { symbols: nextSymbols },
+  { withCredentials: true }
+);
       setSymbols(data.symbols);
       setSearch("");
     } catch (saveError) {

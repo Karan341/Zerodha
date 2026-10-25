@@ -22,9 +22,14 @@ const Holdings = () => {
       setLoading(true);
       setError("");
       try {
-        const { data } = await axios.get("http://localhost:3002/allHoldings", {
-          withCredentials: true,
-        });
+        
+const { data } = await axios.get(
+  "https://zerodha-backend-2ozm.onrender.com/allHoldings",
+  {
+    withCredentials: true,
+  }
+);
+
         if (!cancelled) setAllHoldings(data);
       } catch (loadError) {
         console.error("Could not load holdings:", loadError);

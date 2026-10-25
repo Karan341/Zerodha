@@ -38,7 +38,7 @@ const Summary = ({ username }) => {
       setError("");
       try {
         const { data } = await axios.get(
-          "http://localhost:3002/allHoldings",
+         "https://zerodha-backend-2ozm.onrender.com/allHoldings",
           { withCredentials: true }
         );
         if (!cancelled) setHoldings(data);

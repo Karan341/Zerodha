@@ -20,16 +20,18 @@ const BuyActionWindow = ({ uid }) => {
     setIsSubmitting(true);
     setError("");
     try {
-      await axios.post(
-        "http://localhost:3002/newOrder",
-        {
-          name: uid,
-          qty: Number(stockQuantity),
-          price: Number(stockPrice),
-          mode: "BUY",
-        },
-        { withCredentials: true }
-      );
+     
+await axios.post(
+  "https://zerodha-backend-2ozm.onrender.com/newOrder",
+  {
+    name: uid,
+    qty: Number(stockQuantity),
+    price: Number(stockPrice),
+    mode: "BUY",
+  },
+  { withCredentials: true }
+);
+
       closeBuyWindow();
     } catch (submitError) {
       console.error("Could not save simulated order:", submitError);
