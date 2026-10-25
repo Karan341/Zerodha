@@ -1,0 +1,8 @@
+{
+  "short_name": "Portfolio Demo",
+  "name": "Portfolio Practice | Simulated Trading Dashboard",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

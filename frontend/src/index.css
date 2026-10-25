@@ -1,0 +1,235 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  overflow-x: clip;
+}
+
+.home-signup-link {
+  width: fit-content;
+  min-width: 160px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+  }
+
+  .container > .row {
+    --bs-gutter-x: 1rem;
+  }
+
+  .container h1 {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* --------- */
+
+
+/* ------------- */
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.nav-link{
+  margin-left: 40px;
+}
+
+#supportHero{
+  background-color: rgb(56, 126, 209);
+  color: white;
+}
+
+#supportHero a{
+  color: white;
+}
+
+#supportWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 150px;
+}
+
+#supportHero input{
+  padding: 20px 50px;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+}
+
+.home-page-polish {
+  color: #424b5a;
+}
+
+.home-page-polish > .container {
+  padding-top: clamp(20px, 4vw, 48px);
+  padding-bottom: clamp(20px, 4vw, 48px);
+}
+
+.home-page-polish > .container:first-child {
+  padding-top: clamp(24px, 5vw, 58px);
+}
+
+.home-page-polish h1,
+.home-page-polish h2 {
+  color: #303b4c;
+  letter-spacing: -0.025em;
+}
+
+.home-page-polish p,
+.home-page-polish li {
+  line-height: 1.75;
+}
+
+.home-page-polish img {
+  border-radius: 4px;
+}
+
+.home-page-polish a:not(.home-signup-link) {
+  color: #387ed1;
+  font-weight: 500;
+  transition: color 150ms ease;
+}
+
+.home-page-polish a:not(.home-signup-link):hover {
+  color: #245f9f;
+}
+
+.home-page-polish .home-signup-link {
+  border-color: #387ed1;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(56, 126, 209, 0.14);
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.home-page-polish .home-signup-link:hover {
+  background-color: #286bbd;
+  box-shadow: 0 6px 16px rgba(56, 126, 209, 0.2);
+}
+
+.support-page-polish #supportHero {
+  background: linear-gradient(120deg, #387ed1, #326fb6);
+}
+
+.support-page-polish #supportWrapper {
+  width: min(100% - 48px, 1080px);
+  margin: 0 auto;
+}
+
+.support-page-polish #supportWrapper h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.support-page-polish #supportWrapper a,
+.support-page-polish #supportHero .row a {
+  text-underline-offset: 4px;
+  opacity: 0.94;
+}
+
+.support-page-polish #supportWrapper a:hover,
+.support-page-polish #supportHero .row a:hover {
+  opacity: 1;
+}
+
+.support-page-polish #supportHero .row {
+  width: min(100% - 48px, 1080px);
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.support-page-polish #supportHero .row > div {
+  min-width: 0;
+}
+
+.support-page-polish #supportHero h1 {
+  line-height: 1.45;
+}
+
+.support-page-polish #supportHero input {
+  min-height: 56px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(22, 53, 91, 0.12);
+}
+
+.support-page-polish #supportHero input:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.38);
+  outline-offset: 2px;
+}
+
+.support-page-polish #supportHero ol {
+  padding-left: 20px;
+  line-height: 2;
+}
+
+.support-page-polish .container > .row {
+  row-gap: 8px;
+}
+
+.support-page-polish .container > .row > div[class*="col-"] {
+  border-radius: 8px;
+  transition: background-color 150ms ease;
+}
+
+.support-page-polish .container > .row > div[class*="col-"]:hover {
+  background: #f8fafc;
+}
+
+.support-page-polish .container > .row > div[class*="col-"] h4 {
+  margin-bottom: 14px;
+  color: #35445a;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.support-page-polish .container > .row > div[class*="col-"] h4 i {
+  margin-right: 7px;
+  color: #387ed1;
+}
+
+.support-page-polish .container > .row > div[class*="col-"] a {
+  color: #4f6f96;
+  font-size: 0.9rem;
+  text-underline-offset: 3px;
+}
+
+.support-page-polish .container > .row > div[class*="col-"] a:hover {
+  color: #286bbd;
+}
+
+@media (max-width: 700px) {
+  .support-page-polish #supportWrapper,
+  .support-page-polish #supportHero .row {
+    width: 100%;
+  }
+
+  .support-page-polish #supportHero .row > div {
+    width: 100%;
+  }
+
+  .support-page-polish #supportHero .row {
+    padding: 16px !important;
+  }
+}
