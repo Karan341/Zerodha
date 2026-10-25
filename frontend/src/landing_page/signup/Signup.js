@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { api } from "../../api";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -31,15 +31,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        
-"https://zerodha-backend-2ozm.onrender.com/signup"
-,
-        {
-          ...inputValue,
-        },
-        { withCredentials: true }
-      );
+      const { data } = await api.post("/signup", inputValue);
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
@@ -55,7 +47,7 @@ const Signup = () => {
         handleError(message);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Signup request failed.");
       handleError(
         error.response?.data?.message ||
           "Signup failed. Check that the backend is running and the database is connected."
@@ -72,16 +64,20 @@ const Signup = () => {
           <input
             type="email"
             name="email"
+            id="email"
+            required
             value={email}
             placeholder="Enter your email"
             onChange={handleOnChange}
           />
         </div>
         <div>
-          <label htmlFor="email">Username</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             name="username"
+            id="username"
+            required
             value={username}
             placeholder="Enter your username"
             onChange={handleOnChange}
@@ -92,6 +88,7 @@ const Signup = () => {
           <input
             type="password"
             name="password"
+            required
             value={password}
             placeholder="Enter your password"
             onChange={handleOnChange}

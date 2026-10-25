@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "../api";
 
 const Positions = () => {
   const [positions, setPositions] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      
-.get("https://zerodha-backend-2ozm.onrender.com/allPositions", {
-  withCredentials: true,
-})
-
+    api
+      .get("/allPositions")
       .then((response) => setPositions(response.data))
       .catch((loadError) => {
         console.error("Could not load positions:", loadError);

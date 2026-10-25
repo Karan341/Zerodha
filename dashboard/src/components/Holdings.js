@@ -1,8 +1,8 @@
 
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
+import { api } from "../api";
 
 const formatRupees = (amount) =>
   `₹${Number(amount || 0).toLocaleString("en-IN", {
@@ -22,13 +22,7 @@ const Holdings = () => {
       setLoading(true);
       setError("");
       try {
-        
-const { data } = await axios.get(
-  "https://zerodha-backend-2ozm.onrender.com/allHoldings",
-  {
-    withCredentials: true,
-  }
-);
+        const { data } = await api.get("/allHoldings");
 
         if (!cancelled) setAllHoldings(data);
       } catch (loadError) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { api } from "../api";
 
 import "./DashboardAssistant.css";
 
@@ -265,16 +265,10 @@ const DashboardAssistant = () => {
     const loadPortfolio = async () => {
       setLoading(true);
       const results = await Promise.allSettled([
-        axios.get("https://zerodha-backend-2ozm.onrender.com/allHoldings", {
-          withCredentials: true,
-        }),
-        axios.get("https://zerodha-backend-2ozm.onrender.com/orders", { withCredentials: true }),
-        axios.get("https://zerodha-backend-2ozm.onrender.com/watchlist", {
-          withCredentials: true,
-        }),
-        axios.get("https://zerodha-backend-2ozm.onrender.com/allPositions", {
-          withCredentials: true,
-        }),
+        api.get("/allHoldings"),
+        api.get("/orders"),
+        api.get("/watchlist"),
+        api.get("/allPositions"),
       ]);
 
       if (cancelled) return;

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import axios from "axios";
 import { Tooltip, Grow } from "@mui/material";
 import {
   BarChartOutlined,
@@ -9,6 +8,7 @@ import {
 } from "@mui/icons-material";
 
 import GeneralContext from "./GeneralContext";
+import { api } from "../api";
 import { watchlist as marketWatchlist, holdings } from "../data/data";
 import { DoughnutChart } from "./DoughnoutChart";
 
@@ -27,10 +27,7 @@ const WatchList = () => {
   useEffect(() => {
     const loadWatchlist = async () => {
       try {
-        const { data } = await axios.get(
-  "https://zerodha-backend-2ozm.onrender.com/watchlist",
-  { withCredentials: true }
-);
+        const { data } = await api.get("/watchlist");
         setSymbols(data.symbols);
       } catch (loadError) {
         console.error("Could not load saved watchlist:", loadError);
@@ -69,11 +66,7 @@ const WatchList = () => {
   const saveSymbols = async (nextSymbols) => {
     setError("");
     try {
-     const { data } = await axios.put(
-  "https://zerodha-backend-2ozm.onrender.com/watchlist",
-  { symbols: nextSymbols },
-  { withCredentials: true }
-);
+      const { data } = await api.put("/watchlist", { symbols: nextSymbols });
       setSymbols(data.symbols);
       setSearch("");
     } catch (saveError) {

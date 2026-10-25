@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { api, DASHBOARD_URL } from "../../api";
 import "./Login.css";
 
 const Login = () => {
@@ -30,25 +30,18 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "https://zerodha-backend-2ozm.onrender.com/login",
-        {
-          ...inputValue,
-        },
-        { withCredentials: true }
-      );
-      console.log(data);
+      const { data } = await api.post("/login", inputValue);
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.assign("https://zerodha-dashboard-one-eosin.vercel.app/");
+          window.location.assign(DASHBOARD_URL);
         }, 1000);
       } else {
         handleError(message);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Login request failed.");
       handleError(
         error.response?.data?.message ||
           "Login request failed. Check that the backend is running."
@@ -70,6 +63,7 @@ const Login = () => {
           <input
             type="email"
             name="email"
+            required
             value={email}
             placeholder="Enter your email"
             onChange={handleOnChange}
@@ -80,6 +74,7 @@ const Login = () => {
           <input
             type="password"
             name="password"
+            required
             value={password}
             placeholder="Enter your password"
             onChange={handleOnChange}

@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { DoughnutChart } from "./DoughnoutChart";
+import { api } from "../api";
 
 const formatRupees = (amount) => {
   const value = Number(amount || 0);
@@ -37,10 +37,7 @@ const Summary = ({ username }) => {
       setLoading(true);
       setError("");
       try {
-        const { data } = await axios.get(
-         "https://zerodha-backend-2ozm.onrender.com/allHoldings",
-          { withCredentials: true }
-        );
+        const { data } = await api.get("/allHoldings");
         if (!cancelled) setHoldings(data);
       } catch (loadError) {
         console.error("Could not load portfolio summary:", loadError);

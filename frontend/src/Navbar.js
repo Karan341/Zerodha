@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { api, DASHBOARD_URL } from "./api";
 import "./Navbar.css";
 
 const navItems = [
@@ -23,15 +23,13 @@ function Navbar() {
     setDashboardError("");
 
     try {
-      const { data } = await axios.get("http://localhost:3002/profile", {
-        withCredentials: true,
-      });
+      const { data } = await api.get("/profile");
 
       closeMenu();
       if (data.status) {
-        window.location.assign("http://localhost:3001");
+        window.location.assign(DASHBOARD_URL);
       } else {
-        navigate("/signup");
+        navigate("/login");
       }
     } catch (error) {
       console.error("Could not verify dashboard login:", error);
@@ -68,7 +66,7 @@ function Navbar() {
           >
             <a
               className="site-navbar__link"
-              href="http://localhost:3001"
+              href={DASHBOARD_URL}
               onClick={handleDashboardClick}
             >
               Dashboard

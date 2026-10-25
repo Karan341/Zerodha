@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
+import { api, FRONTEND_URL } from "../api";
 
 const Menu = ({ userId, username }) => {
   const location = useLocation();
@@ -26,17 +26,13 @@ const Menu = ({ userId, username }) => {
     setLogoutError("");
 
     try {
-      const { data } = await axios.post(
-        "https://zerodha-backend-2ozm.onrender.com/logout",
-        {},
-        { withCredentials: true }
-      );
+      const { data } = await api.post("/logout");
 
       if (!data.status) {
         throw new Error(data.message || "Logout failed.");
       }
 
-      window.location.assign("https://zerodha-frontend-snowy.vercel.app/");
+      window.location.assign(FRONTEND_URL);
     } catch (error) {
       console.error("Could not log out:", error);
       setLogoutError(error.response?.data?.message || error.message || "Logout failed.");
@@ -51,7 +47,7 @@ const Menu = ({ userId, username }) => {
     <div className="menu-container">
       <a
         className="dashboard-brand-link"
-        href="https://zerodha-frontend-snowy.vercel.app/"
+        href={FRONTEND_URL}
         aria-label="Go to main website home"
         title="Main website home"
       >
@@ -146,7 +142,7 @@ const Menu = ({ userId, username }) => {
           {isProfileDropdownOpen && (
             <div className="profile-dropdown" role="menu">
               <a
-                href="http://localhost:3000/"
+                href={FRONTEND_URL}
                 role="menuitem"
                 target="_blank"
                 rel="noreferrer"

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
 import GeneralContext from "./GeneralContext";
+import { api } from "../api";
 
 import "./BuyActionWindow.css";
 
@@ -20,17 +20,12 @@ const BuyActionWindow = ({ uid }) => {
     setIsSubmitting(true);
     setError("");
     try {
-     
-await axios.post(
-  "https://zerodha-backend-2ozm.onrender.com/newOrder",
-  {
-    name: uid,
-    qty: Number(stockQuantity),
-    price: Number(stockPrice),
-    mode: "BUY",
-  },
-  { withCredentials: true }
-);
+      await api.post("/newOrder", {
+        name: uid,
+        qty: Number(stockQuantity),
+        price: Number(stockPrice),
+        mode: "BUY",
+      });
 
       closeBuyWindow();
     } catch (submitError) {

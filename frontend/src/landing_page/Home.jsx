@@ -1,36 +1,40 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { api } from "../api";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [cookies, removeCookie] = useCookies([]);
   const [username, setUsername] = useState("");
   useEffect(() => {
     const verifyCookie = async () => {
-      if (!cookies.token) {
-        navigate("/login");
-      }
-      const { data } = await axios.post(
-        "http://localhost:4000",
-        {},
-        { withCredentials: true }
-      );
-      const { status, user } = data;
-      setUsername(user);
-      return status
-        ? toast(`Hello ${user}`, {
+      try {
+        const { data } = await api.get("/profile");
+        if (data.status) {
+          setUsername(data.username);
+          toast(`Hello ${data.username}`, {
             position: "top-right",
-          })
-        : (removeCookie("token"), navigate("/login"));
+          });
+          return;
+        }
+        navigate("/login");
+      } catch (error) {
+        if (error.response?.status === 401) {
+          navigate("/login");
+          return;
+        }
+        console.error("Could not verify login:", error);
+      }
     };
-    verifyCookie();
-  }, [cookies, navigate, removeCookie]);
-  const Logout = () => {
-    removeCookie("token");
-    navigate("/signup");
+    void verifyCookie();
+  }, [navigate]);
+  const Logout = async () => {
+    try {
+      await api.post("/logout");
+      navigate("/signup");
+    } catch (error) {
+      console.error("Could not log out:", error);
+    }
   };
   return (
     <>

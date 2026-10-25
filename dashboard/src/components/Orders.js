@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { api } from "../api";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -9,14 +9,7 @@ const Orders = () => {
   useEffect(() => {
     const loadOrders = async () => {
       try {
-        
-const { data } = await axios.get(
-  "https://zerodha-backend-2ozm.onrender.com/orders",
-  {
-    withCredentials: true,
-  }
-);
-
+        const { data } = await api.get("/orders");
         setOrders(data);
       } catch (loadError) {
         console.error("Could not load order history:", loadError);

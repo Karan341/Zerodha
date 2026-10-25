@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { api, FRONTEND_URL } from "../api";
 
 import Dashboard from "./Dashboard";
 import TopBar from "./TopBar";
@@ -12,19 +12,17 @@ const Home = () => {
   useEffect(() => {
     const loadProfile = async () => {
       try {
-        const { data } = await axios.get("https://zerodha-backend-2ozm.onrender.com/profile", {
-          withCredentials: true,
-        });
+        const { data } = await api.get("/profile");
 
         if (!data.status) {
-          window.location.assign("https://zerodha-frontend-snowy.vercel.app/login");
+          window.location.assign(`${FRONTEND_URL}/login`);
           return;
         }
 
         setUser(data);
       } catch (error) {
         if (error.response?.status === 401) {
-         window.location.assign("https://zerodha-frontend-snowy.vercel.app/login");
+          window.location.assign(`${FRONTEND_URL}/login`);
           return;
         }
 
